@@ -46,3 +46,27 @@ countries.addEventListener("input", e => {
    const optionSelected = [...e.target.children].find(option => option.selected);
    phoneCode.innerHTML =  `+${optionSelected.value}`
 });
+
+phoneInput.addEventListener("input", e => {
+    phoneValidation = NUMBER_REGEX.test(e.target.value);
+    const information = e.target.parentElement.parentElement.children[1];
+    if (phoneValidation) {
+        phoneInput.classList.add('correct');
+        phoneInput.classList.remove('incorrect');
+        information.classList.remove('show-information');
+    } else {
+        phoneInput.classList.remove('correct');
+        phoneInput.classList.add('incorrect');
+        information.classList.add('show-information');
+}
+});
+
+passwordInput.addEventListener("input", e => {
+    passwordValidation = PASSWORD_REGEX.test(e.target.value);
+    validation(e, passwordValidation, passwordInput);
+});
+
+confirmPasswordInput.addEventListener("input", e => {
+    confirmPasswordInput = passwordInput.value === e.target.value;
+    validation(e, confirmPasswordValidation, confirmPasswordInput);
+});
